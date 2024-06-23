@@ -1,6 +1,5 @@
 import { login } from './src/js/api/auth/login.js';
 
-// Mock av fetch og localStorage som tidligere
 const mockFetchSuccess = jest.fn().mockResolvedValue({
   ok: true,
   json: jest.fn().mockResolvedValue({ accessToken: 'mockedToken' }),
@@ -18,7 +17,6 @@ global.localStorage = localStorageMock;
 test('login function should save accessToken in localStorage on successful login', async () => {
   await login('test@example.com', 'password123');
 
-  // Sjekk at accessToken er lagret i localStorage
   expect(localStorageMock.setItem).toHaveBeenCalledWith(
     'token',
     JSON.stringify('mockedToken'),
